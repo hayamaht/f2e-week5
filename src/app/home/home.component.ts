@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ComicsService } from '../comics-data/comics.service';
+import { Observable } from 'rxjs';
+import { Comic } from '../comics-data/comic';
+import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  comics: Observable<Comic[]>;
+  isLoading = true;
+
+  constructor(
+    private comicsService: ComicsService
+  ) { }
 
   ngOnInit() {
+    this.comics = this.comicsService.getAll();
+    this.comics
+      .subscribe(_ => this.isLoading = false);
   }
 
 }

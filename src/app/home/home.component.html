@@ -1,3 +1,7 @@
-<p>
-  home works!
-</p>
+<mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+<ul *ngIf="!isLoading">
+  <li *ngFor="let c of comics | async">
+    <a href="comic/{{c.id}}"><img src="{{c.cover}}" alt="{{ c.title }}"></a>
+    <a href="comic/{{c.id}}">{{ c.title }}</a>
+  </li>
+</ul>
