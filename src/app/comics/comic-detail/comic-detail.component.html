@@ -1,0 +1,9 @@
+<mat-progress-bar mode="indeterminate" *ngIf="!comic"></mat-progress-bar>
+
+<div *ngIf="comic">
+  <div class="cover">
+    <img src="{{ comic.cover }}" alt="{{ comic.title | titlecase }}">
+  </div>
+  <div>{{ comic.title | titlecase }}</div>
+  <button mat-flat-button (click)="goBack()">Back</button>
+</div>
