@@ -1,0 +1,11 @@
+.comics-list {
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+.comic-card {
+  flex: 1;
+  min-width: 180px;
+  // max-width: 200px;
+  margin: 10px;
+}

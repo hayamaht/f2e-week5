@@ -1,9 +1,41 @@
 <mat-progress-bar mode="indeterminate" *ngIf="!comic"></mat-progress-bar>
 
-<div *ngIf="comic">
-  <div class="cover">
-    <img src="{{ comic.cover }}" alt="{{ comic.title | titlecase }}">
+<div *ngIf="comic" class="comic-detail">
+  <div class="comic-info">
+    <div class="comic-cover">
+      <img src="{{ comic.cover }}" alt="{{ comic.title | titlecase }}">
+    </div>
+
+    <div class="comic-data">
+      <h2 class="comic-title">{{ comic.title }}</h2>
+      <div class="comic-props comic-genres"><span>Genres</span> <span>{{ comic.genres.join(' / ') }}</span></div>
+      <div class="comic-props comic-author"><span>Author</span> <span>{{ comic.author }}</span></div>
+      <div class="comic-props comic-status"><span>Status</span> <span>{{ comic.status }}</span></div>
+      <div class="comic-props comic-rate"><span>Rate</span> <app-comic-rating [rating]="comic.rate"></app-comic-rating></div>
+      <div class="comic-actions">
+        <button mat-raised-button>
+          <mat-icon>favorite</mat-icon>
+        </button>
+        <button mat-raised-button>
+          <mat-icon>share</mat-icon>
+        </button>
+      </div>
+    </div>
   </div>
-  <div>{{ comic.title | titlecase }}</div>
-  <button mat-flat-button (click)="goBack()">Back</button>
+
+  <div class="comic-summary">
+    <h3>Summary</h3>
+    <p>{{ comic.summary }}</p>
+  </div>
+  
+  <div class="comic-vols">
+    <h3>Volumns</h3>
+    <ul>
+      <li *ngFor="let v of comic.volumns" class="comic-vol" routerLink="/comic/{{comic.id}}/{{v.vol}}">
+        <div class="comic-vol-num">{{ v.vol }}</div>
+        <div class="comic-vol-cover" [style.backgroundImage]="'url('+ v.cover +')'"></div>
+      </li>
+    </ul>
+  </div>
+
 </div>
