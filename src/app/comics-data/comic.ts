@@ -5,9 +5,13 @@ export interface Comic {
   title: string;
   genres: string[];
   author: string;
-  status: string;
+  status: ComicStatus;
   rate: number;
   summary: string;
   cover: string;
   volumns?: ComicVolumn[];
+}
+
+export enum ComicStatus {
+  Ongoing, Finished
 }
