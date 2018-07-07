@@ -8,15 +8,15 @@
 
     <div class="comic-data">
       <h2 class="comic-title">{{ comic.title }}</h2>
-      <div class="comic-props comic-genres"><span>Genres</span> <span>{{ comic.genres.join('/') }}</span></div>
+      <div class="comic-props comic-genres"><span>Genres</span> <span>{{ comic.genres.join(' / ') }}</span></div>
       <div class="comic-props comic-author"><span>Author</span> <span>{{ comic.author }}</span></div>
       <div class="comic-props comic-status"><span>Status</span> <span>{{ comic.status }}</span></div>
-      <div class="comic-props comic-rate"><span>Rate</span> <span>{{ comic.rate }}</span></div>
+      <div class="comic-props comic-rate"><span>Rate</span> <app-comic-rating [rating]="comic.rate"></app-comic-rating></div>
       <div class="comic-actions">
-        <button mat-button>
+        <button mat-raised-button>
           <mat-icon>favorite</mat-icon>
         </button>
-        <button mat-button>
+        <button mat-raised-button>
           <mat-icon>share</mat-icon>
         </button>
       </div>

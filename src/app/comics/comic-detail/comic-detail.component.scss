@@ -28,9 +28,21 @@
 
 .comic-data {
   flex: 1;
+  display: flex;
+  flex-flow: column;
 
   @include for-phone-only {
     width: 100%;
+  }
+}
+
+.comic-actions {
+  display: flex;
+  align-items: flex-end;
+  flex: 1;
+
+  & > button {
+    flex: 1;
   }
 }
 
@@ -46,11 +58,17 @@
 
 .comic-props {
   margin-left: 20px;
+  margin-bottom: 10px;
+  display: flex;
 
   & > span:first-child {
     display: inline-block;
     width: 40%;
     font-weight: bold;
+  }
+
+  & > span:nth-child(2) {
+    flex: 1;
   }
 }
 

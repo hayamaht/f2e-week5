@@ -20,6 +20,7 @@ import { ComicControlComponent } from './comic-control/comic-control.component';
 import { ComicListComponent } from './comic-list/comic-list.component';
 import { FormsModule } from '@angular/forms';
 import { ComicThumbsComponent } from './comic-thumbs/comic-thumbs.component';
+import { ComicRatingComponent } from './comic-rating/comic-rating.component';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { ComicThumbsComponent } from './comic-thumbs/comic-thumbs.component';
     ComicViewComponent,
     ComicControlComponent,
     ComicListComponent,
-    ComicThumbsComponent
+    ComicThumbsComponent,
+    ComicRatingComponent
   ]
 })
 export class ComicsModule { }

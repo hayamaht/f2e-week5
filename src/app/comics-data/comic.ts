@@ -13,5 +13,5 @@ export interface Comic {
 }
 
 export enum ComicStatus {
-  Ongoing, Finished
+  Ongoing = 'Ongoing', Finished = 'Finished'
 }
