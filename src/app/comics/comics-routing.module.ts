@@ -7,7 +7,6 @@ const routes: Routes = [
   { path: '', component: ComicDetailComponent },
   { path: ':id', component: ComicDetailComponent },
   { path: ':id/:vol', component: ComicViewComponent },
-  { path: ':id/:vol/:page', component: ComicViewComponent },
 ];
 
 @NgModule({

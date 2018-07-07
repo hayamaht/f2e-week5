@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ComicsService } from '../comics-data/comics.service';
 import { Observable } from 'rxjs';
 import { Comic } from '../comics-data/comic';
-import { delay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-home',
