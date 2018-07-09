@@ -1,5 +1,5 @@
 <div class="comic-thumbs">
-  <button mat-flat-button>
+  <button mat-flat-button matTooltip="Previous Volume" (click)="prevVol()">
     <mat-icon>arrow_back</mat-icon>
   </button>
 
@@ -9,7 +9,7 @@
     </li>
   </ol>
   
-  <button mat-flat-button>
+  <button mat-flat-button matTooltip="Next Volume" (click)="nextVol()">
     <mat-icon>arrow_forward</mat-icon>
   </button>
 </div>

@@ -10,7 +10,8 @@ import {
   MatInputModule,
   MatSelectModule,
   MatCheckboxModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatTooltipModule
 } from '@angular/material';
 
 import { ComicRoutingModule } from './comics-routing.module';
@@ -36,6 +37,7 @@ import { ComicRatingComponent } from './comic-rating/comic-rating.component';
     MatSelectModule,
     MatCheckboxModule,
     MatButtonToggleModule,
+    MatTooltipModule
   ],
   declarations: [
     ComicDetailComponent,

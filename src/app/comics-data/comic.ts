@@ -1,4 +1,4 @@
-import { ComicVolumn } from './comic-volumn';
+import { ComicVolume } from './comic-volume';
 
 export interface Comic {
   id: number;
@@ -9,7 +9,7 @@ export interface Comic {
   rate: number;
   summary: string;
   cover: string;
-  volumns?: ComicVolumn[];
+  volumes?: ComicVolume[];
 }
 
 export enum ComicStatus {

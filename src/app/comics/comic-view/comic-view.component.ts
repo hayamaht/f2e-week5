@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ComicsService } from '../../comics-data/comics.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { ComicVolumn } from '../../comics-data/comic-volumn';
+import { ComicVolume } from '../../comics-data/comic-volume';
 import { Comic } from '../../comics-data/comic';
 
 @Component({
@@ -13,12 +13,14 @@ import { Comic } from '../../comics-data/comic';
 export class ComicViewComponent implements OnInit {
 
   @Input() comic: Comic;
-  volumn: ComicVolumn;
+  volume: ComicVolume;
   light = 'on';
   currentPage = 1;
   currentVol = -1;
+  private maxVol = 0;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private comicsService: ComicsService,
     private location: Location
@@ -28,15 +30,11 @@ export class ComicViewComponent implements OnInit {
     this.getComic();
   }
 
-  private getComic() {
-    const id = +this.route.snapshot.paramMap.get('id');
-    this.currentVol = +this.route.snapshot.paramMap.get('vol') || 1;
-    this.comicsService
-      .getById(id)
-      .subscribe(comic => {
-        this.comic = comic;
-        this.volumn = this.comic.volumns.filter(v => v.vol === this.currentVol)[0];
-      });
+  onVolChange(vol: number) {
+    const v = vol < 1 ? 1 :
+      vol > this.maxVol ? this.maxVol : vol;
+    this.router.navigate([`/comic/${this.comic.id}/${v}`]);
+    this.gotoVol(this.comic.id, v);
   }
 
   goBack() {
@@ -52,8 +50,34 @@ export class ComicViewComponent implements OnInit {
   }
 
   gotoPage(page: number) {
-    this.currentPage = (page >= this.volumn.pages.length) ? this.volumn.pages.length :
+    this.currentPage = (page >= this.volume.pages.length) ? this.volume.pages.length :
       (page <= 0) ? 1 : page;
   }
 
+  private gotoVol(id: number, vol: number) {
+    if (this.comic && (id === this.comic.id && vol === this.currentVol)) {
+      return;
+    }
+
+    this.comicsService
+      .getById(id)
+      .subscribe(comic => {
+        this.comic = comic;
+        this.maxVol = Math.max.apply(null, this.comic.volumes.map(v => v.vol));
+        const volume = this.comic.volumes.filter(v => v.vol === vol)[0];
+        if (volume) {
+          this.currentVol = vol;
+          this.volume = volume;
+        } else {
+          this.volume = this.comic.volumes[0];
+          this.currentVol = this.volume.vol;
+        }
+      });
+  }
+
+  private getComic() {
+    const id = +this.route.snapshot.paramMap.get('id');
+    const vol = +this.route.snapshot.paramMap.get('vol') || 1;
+    this.gotoVol(id, vol);
+  }
 }

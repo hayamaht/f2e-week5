@@ -1,6 +1,6 @@
 import { Comic } from './comic';
 
-export interface ComicVolumn {
+export interface ComicVolume {
   vol: number;
   subject?: string;
   cover: string;

@@ -41,7 +41,7 @@ export class InMemoryDataService implements InMemoryDbService {
         rate: faker.random.number({min: 0, max: 5}),
         summary: faker.lorem.paragraph(),
         cover: 'https://picsum.photos/290/440/?image=' + faker.random.number({min: 0, max: 50}),
-        volumns: vols,
+        volumes: vols,
       };
       comics.push(c);
     }

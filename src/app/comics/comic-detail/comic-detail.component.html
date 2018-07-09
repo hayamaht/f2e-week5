@@ -29,9 +29,9 @@
   </div>
   
   <div class="comic-vols">
-    <h3>Volumns</h3>
+    <h3>Volumes</h3>
     <ul>
-      <li *ngFor="let v of comic.volumns" class="comic-vol" routerLink="/comic/{{comic.id}}/{{v.vol}}">
+      <li *ngFor="let v of comic.volumes" class="comic-vol" routerLink="/comic/{{comic.id}}/{{v.vol}}">
         <div class="comic-vol-num">{{ v.vol }}</div>
         <div class="comic-vol-cover" [style.backgroundImage]="'url('+ v.cover +')'"></div>
       </li>

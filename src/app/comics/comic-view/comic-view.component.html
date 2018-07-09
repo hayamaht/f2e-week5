@@ -5,13 +5,13 @@
   
   <div class="comic-control">
     <mat-form-field>
-      <mat-select placeholder="Volumns" [value]="currentVol">
-        <mat-option *ngFor="let v of comic.volumns" [value]="v.vol">{{v.vol}}</mat-option>
+      <mat-select placeholder="Volumes" [value]="currentVol" (valueChange)="onVolChange($event)">
+        <mat-option *ngFor="let v of comic.volumes" [value]="v.vol">{{v.vol}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-select placeholder="Pages" [(ngModel)]="currentPage">
-        <mat-option *ngFor="let p of volumn.pages; let i = index" [value]="(i+1)">{{ (i+1) }}</mat-option>
+        <mat-option *ngFor="let p of volume.pages; let i = index" [value]="(i+1)">{{ (i+1) }}</mat-option>
       </mat-select>
     </mat-form-field>
 
@@ -29,18 +29,31 @@
   </div>
 
   <div class="comic-page">
-    <button mat-button class="btn-prev" (click)="prevPage()" aria-label="Previous Page">
+    <button mat-button
+      matTooltip="Previous Page"
+      class="btn-prev" 
+      (click)="prevPage()" aria-label="Previous Page">
       <mat-icon aria-hidden="true">chevron_left</mat-icon>
     </button>
     
     <div class="comic-content">
-      <img src="../assets/images/storyboard-{{volumn.pages[currentPage - 1]}}.png" alt="Page {{ currentPage }}">
+      <img src="../assets/images/storyboard-{{volume.pages[currentPage - 1]}}.png" alt="Page {{ currentPage }}">
     </div>
     
-    <button mat-button class="btn-next" (click)="nextPage()" aria-label="Next Page">
+    <button mat-button
+      matTooltip="Next Page"
+      class="btn-next" 
+      (click)="nextPage()" 
+      aria-label="Next Page">
       <mat-icon aria-hidden="true">chevron_right</mat-icon>
     </button>
   </div>
 
-  <app-comic-thumbs [pages]="volumn.pages" [currentPage]="currentPage" (currentPageChange)="currentPage=$event"></app-comic-thumbs>
+  <app-comic-thumbs 
+    [pages]="volume.pages" 
+    [currentPage]="currentPage" 
+    (currentPageChange)="currentPage=$event"
+    [currentVol]="currentVol"
+    (currentVolChange)="onVolChange($event)">
+  </app-comic-thumbs>
 </div>
