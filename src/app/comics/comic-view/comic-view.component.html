@@ -1,0 +1,59 @@
+<mat-progress-bar mode="indeterminate" *ngIf="!comic"></mat-progress-bar>
+
+<div *ngIf="comic" class="comic-view" [class.dark]="light==='off'">
+  <h2 (click)="goBack()" matTooltip="Back to {{ comic.title }}">{{ comic.title | uppercase }}</h2>
+  
+  <div class="comic-control">
+    <mat-form-field>
+      <mat-select placeholder="Volumes" [value]="currentVol" (valueChange)="onVolChange($event)">
+        <mat-option *ngFor="let v of comic.volumes" [value]="v.vol">{{v.vol}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select placeholder="Pages" [(ngModel)]="currentPage">
+        <mat-option *ngFor="let p of volume.pages; let i = index" [value]="(i+1)">{{ (i+1) }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-button-toggle-group name="light" class="comic-light" [(ngModel)]="light">
+      <mat-button-toggle value="on">
+          <mat-icon>brightness_7</mat-icon>
+      </mat-button-toggle>
+
+      <mat-button-toggle value="off">
+          <mat-icon>brightness_3</mat-icon>
+      </mat-button-toggle>
+      
+    </mat-button-toggle-group>
+  
+  </div>
+
+  <div class="comic-page">
+    <button mat-button
+      matTooltip="Previous Page"
+      class="btn-prev" 
+      (click)="prevPage()" aria-label="Previous Page">
+      <mat-icon aria-hidden="true">chevron_left</mat-icon>
+    </button>
+    
+    <div class="comic-content">
+      <img src="../assets/images/storyboard-{{volume.pages[currentPage - 1]}}.png" alt="Page {{ currentPage }}">
+    </div>
+    
+    <button mat-button
+      matTooltip="Next Page"
+      class="btn-next" 
+      (click)="nextPage()" 
+      aria-label="Next Page">
+      <mat-icon aria-hidden="true">chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <app-comic-thumbs 
+    [pages]="volume.pages" 
+    [currentPage]="currentPage" 
+    (currentPageChange)="currentPage=$event"
+    [currentVol]="currentVol"
+    (currentVolChange)="onVolChange($event)">
+  </app-comic-thumbs>
+</div>

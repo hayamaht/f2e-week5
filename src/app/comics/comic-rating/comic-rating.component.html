@@ -1,0 +1,6 @@
+<div class="comic-rating">
+  <span *ngFor="let i of [1, 2, 3, 4, 5]">
+    <mat-icon *ngIf="rating >= i">star</mat-icon>
+    <mat-icon *ngIf="rating < i">star_border</mat-icon>
+  </span>
+</div>
