@@ -5,7 +5,7 @@
 
   <ol #pagesList class="comic-pages">
     <li *ngFor="let p of pages; let i = index" class="comic-thumb" [class.active]="currentPage == i + 1" (click)="onClickPage($event)" [attr.data-page]="i+1">
-      <img src="../assets/images/storyboard-{{p}}.png" alt="Page {{ i+1 }}">
+      <img src="./assets/images/storyboard-{{p}}.png" alt="Page {{ i+1 }}">
     </li>
   </ol>
   
