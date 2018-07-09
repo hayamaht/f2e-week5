@@ -1,7 +1,7 @@
 <mat-progress-bar mode="indeterminate" *ngIf="!comic"></mat-progress-bar>
 
 <div *ngIf="comic" class="comic-view" [class.dark]="light==='off'">
-  <h2 (click)="goBack()">{{ comic.title | uppercase }}</h2>
+  <h2 (click)="goBack()" matTooltip="Back to {{ comic.title }}">{{ comic.title | uppercase }}</h2>
   
   <div class="comic-control">
     <mat-form-field>

@@ -91,3 +91,13 @@
     }
   }
 }
+
+.btn-vol {
+  background-color: $primary;
+  color: black;
+
+  &:hover, &:active, &:focus {
+    background-color: black;
+    color: $primary;
+  }
+}
